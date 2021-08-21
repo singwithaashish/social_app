@@ -2,11 +2,14 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:friend_maker/components/text_field.dart';
 import 'package:friend_maker/screens/login_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  SignUpScreen({Key? key}) : super(key: key);
+
+  final TextEditingController tex = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,99 +54,13 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                   // * Username Text field
-                  Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: "Username",
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.red,
-                            width: 2,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.red,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  textField(tex, "Username", false, 30),
                   // * Email address text field
-                  Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: "Email",
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.red,
-                            width: 2,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.red,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  textField(tex, "Email", false, 30),
                   // * password text field
-                  Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: "Password",
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.red,
-                            width: 2,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.red,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  textField(tex, "Password", true, 30),
                   // * Confirm Password
-                  Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: "Confirm Password",
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.red,
-                            width: 2,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.red,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  textField(tex, "Confirm Password", true, 30),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

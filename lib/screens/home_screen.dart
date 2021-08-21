@@ -1,280 +1,314 @@
 import 'dart:ui';
 
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:friend_maker/blueprints/blueprints.dart';
+import 'package:friend_maker/screens/add_screen.dart';
+import 'package:friend_maker/screens/discover_screen.dart';
 import 'package:friend_maker/screens/feed_screen.dart';
+import 'package:friend_maker/screens/notif_screen.dart';
+import 'package:friend_maker/screens/profile_screen.dart';
 import 'package:friend_maker/test_data.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<Widget> allNav = [
+    HomeWidget(),
+    DiscoverScreen(),
+    AddScreen(),
+    NotifScreen(),
+    ProfileScreen()
+  ];
+  int currentPageInxex = 0;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: Icon(
-          Icons.menu,
-          color: Colors.black,
+      appBar: currentPageInxex == 0
+          ? AppBar(
+              elevation: 0,
+              title: Text("Home"),
+              // centerTitle: true,
+              backgroundColor: Colors.black,
+              leading: Icon(
+                Icons.menu,
+                // color: Colors.black,
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: CircleAvatar(
+                    backgroundImage: AssetImage("Assets/bulb.jpg"),
+                  ),
+                ),
+              ],
+            )
+          : null,
+      // backgroundColor: Colors.redAccent[700],
+      bottomNavigationBar: ConvexAppBar(
+        backgroundColor: Colors.black,
+        items: [
+          TabItem(icon: Icons.home, title: 'Home'),
+          TabItem(icon: Icons.map, title: 'Discover'),
+          TabItem(icon: Icons.add, title: 'Add'),
+          TabItem(icon: Icons.notifications, title: 'notification'),
+          TabItem(icon: Icons.people, title: 'Profile'),
+        ],
+        initialActiveIndex: 0, //optional, default as 0
+        onTap: (int i) {
+          setState(() {
+            currentPageInxex = i;
+          });
+        },
+      ),
+      body: allNav[currentPageInxex],
+    );
+  }
+}
+
+Container newsFeed(BuildContext context, FeedBlueprint feedBlueprint) {
+  return Container(
+    padding: const EdgeInsets.all(8.0),
+    margin: const EdgeInsets.all(8.0),
+    // color: Colors.red,
+    decoration: BoxDecoration(
+      // border: Border.all(
+      //   color: Colors.grey,
+      // ),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey,
+          blurRadius: 5,
+          offset: Offset(4, 4),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: CircleAvatar(
-              backgroundImage: AssetImage("Assets/bulb.jpg"),
+      ],
+      borderRadius: BorderRadius.circular(20),
+      color: Colors.white,
+    ),
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(feedBlueprint.pfpPoster),
+                radius: 20,
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  feedBlueprint.unPoster,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "${feedBlueprint.nameOfPlace}   ${feedBlueprint.dateOfPost}",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.grey,
+                    // fontWeight: FontWeight.bold,
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FeedScreen(),
+              ),
+            );
+          },
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(feedBlueprint.title),
+              ),
+              SizedBox(
+                height: 160,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: feedBlueprint.allImage.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.network(
+                          feedBlueprint.allImage[index],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            TextButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.share),
+              label: Text("Share"),
+            ),
+            TextButton.icon(
+              onPressed: () {},
+              icon: Icon(
+                Icons.approval,
+                color: Colors.redAccent[700],
+              ),
+              label: Text(feedBlueprint.totalBless.toString()),
+            ),
+            TextButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.bookmark),
+              label: Text("Bookmark"),
+            ),
+          ],
+        )
+      ],
+    ),
+  );
+}
+
+class HomeWidget extends StatelessWidget {
+  const HomeWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      // controller: controller,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 17.0, bottom: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Explore Now",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 29),
+                      ),
+                      // Text(
+                      //   "Travellers Activites",
+                      //   style: TextStyle(
+                      //     color: Colors.grey,
+                      //   ),
+                      // )
+                    ],
+                  ),
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.sort,
+                  color: Colors.grey,
+                ),
+              )
+            ],
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "🥥 Explore stories",
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        // controller: controller,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(
+          SizedBox(
+            height: 210,
+            child: ListView.builder(
+              itemCount: 5,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  width: 130,
+                  padding: EdgeInsets.all(2),
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 5,
+                        offset: Offset(4, 4),
+                      ),
+                    ],
+                    image: DecorationImage(
+                      image: AssetImage("Assets/forest.jpg"),
+                      fit: BoxFit.cover,
+                    ),
+                    // color: Colors.red,
+                  ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 17.0, bottom: 10),
+                    padding: const EdgeInsets.all(8.0),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Explore Now",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 29),
+                        SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "Assets/lightning.jpg",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                         Text(
-                          "Travellers Activites",
+                          "hohn $index",
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: Colors.white,
                           ),
                         )
                       ],
                     ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.sort,
-                    color: Colors.grey,
-                  ),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 80,
-              child: ListView.builder(
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    width: 60,
-                    padding: EdgeInsets.all(2),
-                    margin: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.red,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                      // image: DecorationImage(
-                      //   image: AssetImage("Assets/bulb.jpg"),
-                      //   fit: BoxFit.cover,
-                      // ),
-                      // color: Colors.red,
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(17),
-                      child: Image.asset(
-                        "Assets/bulb.jpg",
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "🥥 Explore stories",
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 210,
-              child: ListView.builder(
-                itemCount: 5,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    width: 130,
-                    padding: EdgeInsets.all(2),
-                    margin: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                        image: AssetImage("Assets/forest.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                      // color: Colors.red,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: 30,
-                            height: 30,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Image.asset(
-                                "Assets/lightning.jpg",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            "hohn $index",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "📰 News Portal",
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            // * feed that needs to be in a for loop
-            for (int i = 0; i < 5; i++) newsFeed(context)
-          ],
-        ),
-      ),
-    );
-  }
-
-  Container newsFeed(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      margin: const EdgeInsets.all(8.0),
-      // color: Colors.red,
-      // decoration: BoxDecoration(
-      //   border: Border.all(
-      //     color: Colors.grey,
-      //   ),
-      //   borderRadius: BorderRadius.circular(20),
-      // ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  backgroundImage: AssetImage("Assets/bulb.jpg"),
-                  radius: 20,
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Username",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "Melbourne, Au   2 hours ago",
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.grey,
-                      // fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => FeedScreen(),
-                ),
-              );
-            },
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                      "today I climbed up to the statue of liberty that was wonderful"),
-                ),
-                SizedBox(
-                  height: 160,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: Image.asset("Assets/lightning.jpg")),
-                      );
-                    },
-                  ),
-                ),
-              ],
+                );
+              },
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              TextButton.icon(
-                onPressed: () {},
-                icon: Icon(Icons.share),
-                label: Text("Share"),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "📰 News Portal",
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold,
               ),
-              TextButton.icon(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.approval,
-                  color: Colors.redAccent[700],
-                ),
-                label: Text("Bless"),
-              ),
-              TextButton.icon(
-                onPressed: () {},
-                icon: Icon(Icons.bookmark),
-                label: Text("Bookmark"),
-              ),
-            ],
-          )
+            ),
+          ),
+          // * feed that needs to be in a for loop
+          for (int i = 0; i < allFeeds.length; i++)
+            newsFeed(context, allFeeds[i])
         ],
       ),
     );
