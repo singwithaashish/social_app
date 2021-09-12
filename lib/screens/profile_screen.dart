@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:friend_maker/components/news_feed.dart';
 import 'package:friend_maker/screens/home_screen.dart';
 import 'package:friend_maker/test_data.dart';
 
@@ -19,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
           flexibleSpace: FlexibleSpaceBar(
             title: Text(
               'Random User',
-              style: TextStyle(color: Colors.red),
+              style: TextStyle(color: Colors.white),
             ),
             centerTitle: true,
             stretchModes: [StretchMode.fadeTitle],
@@ -53,7 +54,9 @@ class ProfileInfo extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height / 3,
       decoration: BoxDecoration(
+        // color: Colors.black,
         image: DecorationImage(
+            // colorFilter: ColorFilter.linearToSrgbGamma(),
             image: NetworkImage(
                 'https://i.pinimg.com/originals/19/cf/78/19cf789a8e216dc898043489c16cec00.jpg'),
             fit: BoxFit.cover),
@@ -68,7 +71,7 @@ class ProfileInfo extends StatelessWidget {
         children: [
           SafeArea(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
                   onPressed: () {},
