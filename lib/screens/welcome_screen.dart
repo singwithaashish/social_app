@@ -24,108 +24,129 @@ class WelcomeScreen extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.redAccent[700],
-                minimumSize: Size(150, 40),
-                shape: new RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+            child: Hero(
+              tag: "login",
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.redAccent[700],
+                  minimumSize: Size(150, 40),
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                          child: LoginScreen(), type: PageTransitionType.fade)
+                      // MaterialPageRoute(
+                      //   builder: (context) => ,
+                      // ),
+                      );
+                },
+                child: Text("Login"),
               ),
-              onPressed: () {
-                Navigator.push(
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Hero(
+              tag: "signup",
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blueGrey,
+                  minimumSize: Size(150, 40),
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
                     context,
                     PageTransition(
-                        child: LoginScreen(), type: PageTransitionType.fade)
-                    // MaterialPageRoute(
-                    //   builder: (context) => ,
-                    // ),
-                    );
-              },
-              child: Text("Login"),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blueGrey,
-                minimumSize: Size(150, 40),
-                shape: new RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    child: SignUpScreen(),
-                    type: PageTransitionType.fade,
-                  ),
-                );
-              },
-              child: Text("sign up"),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              " Or Login with : ",
-              style: TextStyle(
-                color: Colors.white,
+                      child: SignUpScreen(),
+                      type: PageTransitionType.fade,
+                    ),
+                  );
+                },
+                child: Text("sign up"),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  child: Divider(
-                    color: Colors.black,
-                    // height: 1,
-                    thickness: 1,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: FaIcon(
-                        FontAwesomeIcons.google,
-                        color: Colors.greenAccent,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: FaIcon(
-                        FontAwesomeIcons.facebook,
-                        color: Colors.blueAccent,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: FaIcon(
-                        FontAwesomeIcons.twitter,
-                        color: Colors.blue,
-                      ),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: Divider(
-                    color: Colors.black,
-                    // height: 1,
-                    thickness: 1,
-                  ),
-                ),
-              ],
-            ),
-          )
+          SignInAlternatives()
         ],
       ),
+    );
+  }
+}
+
+class SignInAlternatives extends StatelessWidget {
+  const SignInAlternatives({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            " Or Login with : ",
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: Divider(
+                  color: Colors.black,
+                  // height: 1,
+                  thickness: 1,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: FaIcon(
+                      FontAwesomeIcons.google,
+                      color: Colors.greenAccent,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: FaIcon(
+                      FontAwesomeIcons.facebook,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: FaIcon(
+                      FontAwesomeIcons.twitter,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Divider(
+                  color: Colors.black,
+                  // height: 1,
+                  thickness: 1,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

@@ -71,21 +71,38 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           : null,
       backgroundColor: Colors.blue[50],
-      bottomNavigationBar: ConvexAppBar(
-        backgroundColor: Colors.redAccent[700],
-        items: [
-          TabItem(icon: Icons.home, title: 'Home'),
-          TabItem(icon: Icons.map, title: 'Discover'),
-          TabItem(icon: Icons.add, title: 'Add'),
-          TabItem(icon: Icons.notifications, title: 'Notification'),
-          TabItem(icon: Icons.people, title: 'Profile'),
-        ],
-        initialActiveIndex: 0, //optional, default as 0
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black,
+        selectedItemColor: Colors.redAccent[700],
+        unselectedItemColor: Colors.black,
+        currentIndex: currentPageInxex,
         onTap: (int i) {
           setState(() {
             currentPageInxex = i;
           });
         },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: "Discover",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: "Add",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: "Notification",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: "Profile",
+          ),
+        ],
       ),
       body: allNav[currentPageInxex],
       drawer: Drawer(

@@ -108,24 +108,27 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.redAccent[700],
-                          minimumSize: Size(150, 40),
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                      Hero(
+                        tag: "login",
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.redAccent[700],
+                            minimumSize: Size(150, 40),
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                           ),
+                          onPressed: () {
+                            // Navigator.push(
+                            //     context,
+                            //     PageTransition(
+                            //         child: LoginScreen(), type: PageTransitionType.fade)
+                            // MaterialPageRoute(
+                            //   builder: (context) => ,
+                            // ),
+                          },
+                          child: Text("Login"),
                         ),
-                        onPressed: () {
-                          // Navigator.push(
-                          //     context,
-                          //     PageTransition(
-                          //         child: LoginScreen(), type: PageTransitionType.fade)
-                          // MaterialPageRoute(
-                          //   builder: (context) => ,
-                          // ),
-                        },
-                        child: Text("Login"),
                       ),
                     ],
                   )
