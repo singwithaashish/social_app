@@ -116,7 +116,7 @@ List<CommunityBlueprint> allRecommendations = [
 
 List<StoryBlueprint> allStories = [
   StoryBlueprint(
-    author: "posterUsername",
+    author: "Randy",
     pfpUrl:
         "https://images.unsplash.com/photo-1629497304206-9122964fecb8?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     picUrl:
@@ -124,7 +124,7 @@ List<StoryBlueprint> allStories = [
     postDate: DateTime.now(),
   ),
   StoryBlueprint(
-    author: "posterUsername",
+    author: "Mike",
     pfpUrl:
         "https://images.unsplash.com/photo-1623944887316-a475472013c2?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     picUrl:
@@ -132,7 +132,7 @@ List<StoryBlueprint> allStories = [
     postDate: DateTime.now(),
   ),
   StoryBlueprint(
-    author: "posterUsername",
+    author: "Bill",
     pfpUrl:
         "https://images.unsplash.com/photo-1628191081676-8f40d4ce6c44?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     picUrl:
@@ -140,7 +140,7 @@ List<StoryBlueprint> allStories = [
     postDate: DateTime.now(),
   ),
   StoryBlueprint(
-    author: "posterUsername",
+    author: "Shepard",
     pfpUrl:
         "https://images.unsplash.com/photo-1629477014447-30159b3b334f?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     picUrl:
@@ -148,7 +148,7 @@ List<StoryBlueprint> allStories = [
     postDate: DateTime.now(),
   ),
   StoryBlueprint(
-    author: "posterUsername",
+    author: "Mika",
     pfpUrl:
         "https://images.unsplash.com/photo-1629497304206-9122964fecb8?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     picUrl:

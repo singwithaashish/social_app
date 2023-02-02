@@ -187,8 +187,7 @@ class HomeWidget extends StatelessWidget {
                     children: [
                       Text(
                         "Explore Now",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 29),
+                        style: Theme.of(context).textTheme.headline1,
                       ),
                       // Text(
                       //   "Travellers Activites",
@@ -214,11 +213,7 @@ class HomeWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               "🥥 Explore stories",
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.grey,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.headline3,
             ),
           ),
           SizedBox(
@@ -290,11 +285,7 @@ class HomeWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               "📰 News Portal",
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.grey,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.headline3,
             ),
           ),
           // * feed that needs to be in a for loop
