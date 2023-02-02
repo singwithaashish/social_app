@@ -21,25 +21,12 @@ class DiscoverScreen extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         // color: Colors.black,
-        border: Border.all(),
-        borderRadius: BorderRadius.circular(20),
+        // border: Border.all(),
+        borderRadius: BorderRadius.circular(5),
       ),
-      margin: EdgeInsets.all(8),
-      padding: EdgeInsets.all(8),
-      child: Column(
-        // crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            cb.communityName,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
-          newsFeed(context, allFeeds[0]),
-          ElevatedButton(onPressed: () {}, child: Text("Join"))
-        ],
-      ),
+      margin: EdgeInsets.all(5),
+      // padding: EdgeInsets.all(8),
+      child: newsFeed(context, allFeeds[0]),
     );
   }
 }

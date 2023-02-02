@@ -12,7 +12,7 @@ void showDiscussion(BuildContext context) {
           Navigator.of(context).pop();
         },
       ),
-      backgroundColor: Colors.redAccent[700],
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {

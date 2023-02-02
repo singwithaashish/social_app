@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
               elevation: 0,
               title: Text(pageName[currentPageInxex]),
               // centerTitle: true,
-              backgroundColor: Colors.redAccent[700],
+              backgroundColor: Theme.of(context).primaryColor,
               // leading: IconButton(
               //     onPressed: () {
               //       // zoomDrawerController!.toggle();
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.blue[50],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.black,
-        selectedItemColor: Colors.redAccent[700],
+        selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.black,
         currentIndex: currentPageInxex,
         onTap: (int i) {
@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: EdgeInsets.all(10),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.redAccent[700],
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
@@ -314,7 +314,7 @@ class HomeWidget extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       backgroundColor: Colors.redAccent[700],
+//       backgroundColor: Theme.of(context).primaryColor,
 //       appBar: AppBar(
 //         leading: IconButton(
 //           onPressed: () {},
@@ -328,7 +328,7 @@ class HomeWidget extends StatelessWidget {
 //             icon: Icon(Icons.more),
 //           ),
 //         ],
-//         backgroundColor: Colors.redAccent[700],
+//         backgroundColor: Theme.of(context).primaryColor,
 //         elevation: 0,
 //       ),
 //       body: SafeArea(

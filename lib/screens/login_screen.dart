@@ -112,7 +112,7 @@ class LoginScreen extends StatelessWidget {
                         tag: "login",
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.redAccent[700],
+                            primary: Theme.of(context).primaryColor,
                             minimumSize: Size(150, 40),
                             shape: new RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),

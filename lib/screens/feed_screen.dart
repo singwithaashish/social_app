@@ -46,7 +46,7 @@ class FeedScreen extends StatelessWidget {
             ),
           ],
         ),
-        backgroundColor: Colors.redAccent[700],
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: feedAppbar(
@@ -87,7 +87,7 @@ class FeedScreen extends StatelessWidget {
 AppBar feedAppbar(
     BuildContext context, String username, String loc, int hrsAgo, String pfp) {
   return AppBar(
-    backgroundColor: Colors.redAccent[700],
+    backgroundColor: Theme.of(context).primaryColor,
     actions: [
       IconButton(
           onPressed: () {},

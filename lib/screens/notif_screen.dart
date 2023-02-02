@@ -10,20 +10,22 @@ class NotifScreen extends StatelessWidget {
       child: ListView.builder(
         itemCount: allNotifications.length,
         // shrinkWrap: true,
-        reverse: true,
+
+        reverse: false,
         itemBuilder: (BuildContext context, int index) {
-          return buildNotification(index);
+          return buildNotification(index, context);
         },
       ),
     );
   }
 
-  Container buildNotification(int index) {
+  Container buildNotification(int index, BuildContext context) {
     return Container(
       margin: EdgeInsets.all(1),
+      padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.horizontal(
-          left: Radius.circular(20),
+          left: Radius.circular(5),
         ),
         color: Colors.white,
       ),
@@ -46,6 +48,7 @@ class NotifScreen extends StatelessWidget {
                 allNotifications[index].notificatoinContent,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor,
                 ),
               )
             ],

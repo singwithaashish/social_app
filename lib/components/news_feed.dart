@@ -7,7 +7,7 @@ Container newsFeed(BuildContext context, FeedBlueprint feedBlueprint) {
   // int a = DateTime.
   return Container(
     padding: const EdgeInsets.all(8.0),
-    margin: const EdgeInsets.all(8.0),
+    // margin: const EdgeInsets.all(8.0),
     // color: Colors.red,
     decoration: BoxDecoration(
       // border: Border.all(
@@ -20,38 +20,52 @@ Container newsFeed(BuildContext context, FeedBlueprint feedBlueprint) {
           offset: Offset(4, 4),
         ),
       ],
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(5),
       color: Colors.white,
     ),
     child: Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(feedBlueprint.pfpPoster),
-                radius: 20,
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
-                  feedBlueprint.unPoster,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "${feedBlueprint.nameOfPlace}   ${DateTime.now().difference(feedBlueprint.dateOfPost).inHours} hours ago",
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.grey,
-                    // fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(feedBlueprint.pfpPoster),
+                    radius: 20,
                   ),
-                )
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      feedBlueprint.unPoster,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "${feedBlueprint.nameOfPlace}   ${DateTime.now().difference(feedBlueprint.dateOfPost).inHours} hours ago",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.grey,
+                        // fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
+            ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: Text("Join"))
           ],
         ),
         GestureDetector(
@@ -92,29 +106,37 @@ Container newsFeed(BuildContext context, FeedBlueprint feedBlueprint) {
           ),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.arrow_upward_outlined),
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.arrow_upward_outlined),
+                ),
+                Text("51"),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.arrow_downward_rounded,
+                    // color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ],
             ),
-            Text("51"),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.arrow_downward_rounded,
-                // color: Colors.redAccent[700],
-              ),
-            ),
-            IconButton(
-              onPressed: () {
-                showDiscussion(context);
-              },
-              icon: Icon(Icons.comment_rounded),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.bookmark),
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    showDiscussion(context);
+                  },
+                  icon: Icon(Icons.comment_rounded),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.bookmark),
+                ),
+              ],
             ),
           ],
         )

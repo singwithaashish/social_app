@@ -59,7 +59,7 @@ class _AddScreenState extends State<AddScreen> {
                       icon: Icon(Icons.image),
                       label: Text("Add Images"),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.redAccent[700],
+                        primary: Theme.of(context).primaryColor,
                       ),
                     )
                   : Column(
@@ -87,7 +87,7 @@ class _AddScreenState extends State<AddScreen> {
                                     },
                                     icon: Icon(
                                       Icons.cancel,
-                                      color: Colors.redAccent[700],
+                                      color: Theme.of(context).primaryColor,
                                     ),
                                   )
                                 ]),
